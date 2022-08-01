@@ -7,3 +7,6 @@
 #npm i bcryptjs
 #npm i express-validator
 #npm i jsonwebtoken
+
+
+#show logs heroku logs -n 100 --tail
