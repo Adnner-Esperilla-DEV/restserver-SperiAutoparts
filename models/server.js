@@ -6,8 +6,15 @@ class Server {
     constructor(){
         this.app = express();
         this.port =process.env.PORT;
-        this.userPath = '/api/users';
-        this.authPath='/api/auth';
+        this.paths={
+            auth:'/api/auth',
+            autopartes:'/api/autopartes',
+            buscar:'/api/buscar',
+            imgAutopartes:'/api/imgAutopartes',
+            tipoVehiculos:'/api/tipoVehiculos',
+            user:'/api/users',
+            
+        }
         //Coneccion a DB
         this.conectarDB();
 
@@ -30,8 +37,13 @@ class Server {
         this.app.use(express.static('public'));
     }
     routes() {
-        this.app.use(this.authPath,require('../routes/auth'));
-        this.app.use(this.userPath,require('../routes/user'));
+        this.app.use(this.paths.auth,require('../routes/auth'));
+        this.app.use(this.paths.autopartes,require('../routes/autopartes'));
+        this.app.use(this.paths.buscar,require('../routes/buscar'));
+        this.app.use(this.paths.imgAutopartes,require('../routes/imgAutopartes'));
+        this.app.use(this.paths.tipoVehiculos,require('../routes/tipoVehiculos'));
+        this.app.use(this.paths.user,require('../routes/user'));
+        
     }
     listen() {
         this.app.listen(this.port, ()=>{
