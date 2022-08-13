@@ -23,6 +23,7 @@ const buscarAutoparteByTodo = async(termino ='',limite,desde,res=response ) =>{
     }
 
     const regex = new RegExp(termino,'i');
+    
     const tipoVehiculo = await TipoVehiculo.find({ 
         $or:[{marca:regex},{modelo:regex},{tipo:regex}],
         $and:[{estado:true}]
